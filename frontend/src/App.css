@@ -1,0 +1,211 @@
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Dashboard */
+.dashboard-section {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.stat-card {
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.stat-card h3 {
+  margin: 0 0 10px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.stat-number.pending { color: #ff9800; }
+.stat-number.paid { color: #4caf50; }
+.stat-number.overdue { color: #f44336; }
+
+/* Alertas */
+.alerts-section {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.alert-group {
+  margin-bottom: 15px;
+}
+
+.alert-group h3 {
+  margin: 0 0 10px 0;
+  color: #856404;
+}
+
+.alert-list {
+  list-style: none;
+  padding: 0;
+}
+
+.alert-list li {
+  padding: 8px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+
+.alert-list.overdue li {
+  background: #ffebee;
+  border-left: 4px solid #f44336;
+}
+
+.alert-list.warning li {
+  background: #fff3e0;
+  border-left: 4px solid #ff9800;
+}
+
+/* Cotação B3 */
+.quote-section {
+  background: #e3f2fd;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.quote-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.quote-result {
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Formulário */
+form {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+textarea {
+  grid-column: 1 / -1;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+/* Lista de Duplicatas */
+.duplicatas-list {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.duplicata-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: white;
+}
+
+.duplicata-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status-badge.pendente { background: #fff3e0; color: #f57c00; }
+.status-badge.pago { background: #e8f5e8; color: #2e7d32; }
+.status-badge.vencido { background: #ffebee; color: #c62828; }
+.status-badge.cancelado { background: #f5f5f5; color: #616161; }
+
+.duplicata-details {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.duplicata-item button {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.duplicata-item button:hover {
+  background: #d32f2f;
+}
+
+/* Elementos gerais */
+input, select, button {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #1976d2;
+}
+
+h2 {
+  margin-top: 0;
+  color: #333;
+}
