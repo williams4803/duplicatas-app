@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: duplicatas-backend
+    env: node
+    region: oregon
+    branch: main
+    root: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: MONGODB_URI
+        fromSecret: MONGODB_URI
+      - key: MONGODB_USER
+        fromSecret: MONGODB_USER
+      - key: MONGODB_PASS
+        fromSecret: MONGODB_PASS
+    autoDeploy: true
