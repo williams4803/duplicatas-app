@@ -17,7 +17,7 @@ const mongoOptions = {
 
 if (!process.env.MONGODB_URI) {
   mongoOptions.auth = {
-    username: process.env.MONGODB_USER || "wcjesus38_db_user",
+    username: process.env.MONGODB_USER || "williams38_db_user",
     password: process.env.MONGODB_PASS || "mh2ovFGaDb76Drx0",
   };
 }
