@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 
+const apiBase = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
+
 function App() {
-  const apiBase = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
   const [duplicatas, setDuplicatas] = useState([]);
   const [form, setForm] = useState({
     numero: '',
@@ -19,19 +20,13 @@ function App() {
   const [stats, setStats] = useState(null);
   const [alerts, setAlerts] = useState(null);
 
-  useEffect(() => {
-    fetchDuplicatas();
-    fetchStats();
-    fetchAlerts();
-  }, []);
-
-  const fetchDuplicatas = async () => {
+  const fetchDuplicatas = useCallback(async () => {
     const response = await fetch(`${apiBase}/duplicatas`);
     const data = await response.json();
     setDuplicatas(data);
-  };
+  }, []);
 
-  const fetchStats = async () => {
+  const fetchStats = useCallback(async () => {
     try {
       const response = await fetch(`${apiBase}/monitoramento/stats`);
       const data = await response.json();
@@ -39,9 +34,9 @@ function App() {
     } catch (error) {
       console.error('Erro ao buscar estatísticas:', error);
     }
-  };
+  }, []);
 
-  const fetchAlerts = async () => {
+  const fetchAlerts = useCallback(async () => {
     try {
       const response = await fetch(`${apiBase}/monitoramento/alerts`);
       const data = await response.json();
@@ -49,9 +44,9 @@ function App() {
     } catch (error) {
       console.error('Erro ao buscar alertas:', error);
     }
-  };
+  }, []);
 
-  const fetchQuote = async (symbol) => {
+  const fetchQuote = useCallback(async (symbol) => {
     try {
       const response = await fetch(`${apiBase}/b3/quote/${encodeURIComponent(symbol)}`);
       const data = await response.json();
@@ -63,11 +58,17 @@ function App() {
     } catch (error) {
       setQuote({ error: 'Erro de conexão ao buscar a cotação' });
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchDuplicatas();
+    fetchStats();
+    fetchAlerts();
+  }, [fetchDuplicatas, fetchStats, fetchAlerts]);
 
   useEffect(() => {
     fetchQuote(ticker);
-  }, [ticker]);
+  }, [ticker, fetchQuote]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
