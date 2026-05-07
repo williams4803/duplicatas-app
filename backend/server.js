@@ -37,21 +37,22 @@ app.use("/b3", b3Routes);
 const frontendBuildPath = path.join(__dirname, "../frontend/build");
 app.use(express.static(frontendBuildPath));
 
-app.get("*", (req, res) => {
+app.get("/*splat", (req, res) => {
   if (req.path.startsWith("/duplicatas") || req.path.startsWith("/monitoramento") || req.path.startsWith("/b3") || req.path.startsWith("/api")) {
     return res.status(404).send("Rota não encontrada");
   }
   res.sendFile(path.join(frontendBuildPath, "index.html"));
 });
 
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
+});
+
 mongoose
   .connect(mongoUri, mongoOptions)
   .then(() => {
     console.log("Banco Conectado");
-    app.listen(port, () => {
-      console.log(`Servidor rodando em http://localhost:${port}`);
-    });
   })
   .catch(err => {
-    console.log("Erro ao conectar ao banco:", err);
+    console.log("Erro ao conectar ao banco:", err.message);
   });

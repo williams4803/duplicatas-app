@@ -124,21 +124,21 @@ function App() {
             </div>
             <div className="stat-card">
               <h3>Valor Total</h3>
-              <p className="stat-number">R$ {stats.valorTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</p>
+              <p className="stat-number">R$ {(stats.valorTotal ?? 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</p>
             </div>
             <div className="stat-card">
               <h3>Valor Pendente</h3>
-              <p className="stat-number">R$ {stats.valorPendente.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</p>
+              <p className="stat-number">R$ {(stats.valorPendente ?? 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</p>
             </div>
           </div>
         </section>
       )}
 
       {/* Alertas */}
-      {alerts && (alerts.vencendo.length > 0 || alerts.vencidas.length > 0) && (
+      {alerts && ((alerts.vencendo?.length > 0) || (alerts.vencidas?.length > 0)) && (
         <section className="alerts-section">
           <h2>🚨 Alertas</h2>
-          {alerts.vencidas.length > 0 && (
+          {alerts.vencidas?.length > 0 && (
             <div className="alert-group">
               <h3>Duplicatas Vencidas</h3>
               <ul className="alert-list overdue">
@@ -150,7 +150,7 @@ function App() {
               </ul>
             </div>
           )}
-          {alerts.vencendo.length > 0 && (
+          {alerts.vencendo?.length > 0 && (
             <div className="alert-group">
               <h3>Vencendo nos Próximos 7 Dias</h3>
               <ul className="alert-list warning">
@@ -188,7 +188,7 @@ function App() {
                 <p><strong>{quote.longName || quote.shortName}</strong> ({quote.symbol})</p>
                 <p>Preço atual: R$ {quote.regularMarketPrice}</p>
                 <p>Variação: {quote.regularMarketChangePercent?.toFixed(2)}%</p>
-                <p>Última atualização: {quote.regularMarketTime ? new Date(quote.regularMarketTime * 1000).toLocaleString() : '---'}</p>
+                <p>Última atualização: {(() => { const t = quote.regularMarketTime; if (!t) return '---'; const d = typeof t === 'number' ? new Date(t * 1000) : new Date(t); return isNaN(d) ? '---' : d.toLocaleString('pt-BR'); })()}</p>
               </>
             )}
           </div>
