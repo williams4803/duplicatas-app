@@ -7,7 +7,7 @@
     "start": "node server.js",
     "build-frontend": "cd ../frontend && npm install && npm run build",
     "heroku-postbuild": "npm run build-frontend",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --check server.js && node --check models/Duplicata.js && node --check routes/b3.js && node --check routes/duplicata.js && node --check routes/monitoramento.js"
   },
   "keywords": [],
   "author": "",

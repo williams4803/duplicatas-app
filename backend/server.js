@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 const port = process.env.PORT || 3001;
-const mongoUri = process.env.MONGODB_URI || "mongodb://ac-jrtuibl-shard-00-00.qyndjft.mongodb.net:27017,ac-jrtuibl-shard-00-01.qyndjft.mongodb.net:27017,ac-jrtuibl-shard-00-02.qyndjft.mongodb.net:27017/duplicatas?ssl=true&authSource=admin&retryWrites=true&w=majority";
+const mongoUri = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/duplicatas";
 const mongoOptions = {
   serverSelectionTimeoutMS: 30000,
 };
